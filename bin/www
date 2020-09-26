@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+const app = require('../app');
+const debug = require('debug')('myapp:www');
+const http = require('http');
+const colors = require('colors');
+
+
+// Obtenir le port de l'environnement et le stocker dans Express
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+// creation du serveur express
+var server = http.createServer(app);
+
+// Ecoute sur le port fourni, sur toutes les interfaces réseau
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+// Normaliser un port en un nombre, une chaîne ou un faux
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+// Ecouteur d'événements pour l'événement "error" du serveur HTTP
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+// Gérer les erreurs d'écoute spécifiques à l'aide de messages
+    switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+// Ecouteur d'événement pour l'événement "écoute" du serveur HTTP
+function onListening() {
+  console.log(`listening on ${port} http://localhost:${port}/`.black.bgCyan);
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
