@@ -2,20 +2,20 @@
 
 structure template web MVC nodejs
 
-Cloner le projet
+Clone the project
 ```
 git clone https://github.com/benoitpetit/node-mvc-skeleton
 ```
-Installer les dependances
+Install dependencies
 ```
 npm install
 ```
-Executer le server node
-> avec nodemon
+Run the server node
+> with nodemon
 ```
 npm run dev
 ```
->en mode normal
+> with node
 ```
 npm run start
 ```
