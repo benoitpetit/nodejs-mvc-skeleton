@@ -1,6 +1,6 @@
 # Node-MVC-Skeleton
 
-Base structure project nodejs
+Base structure project Express
 
 <img src="public/images/express.png" alt="drawing" width="400"/>
 
