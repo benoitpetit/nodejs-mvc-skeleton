@@ -1,19 +1,13 @@
 /**
- * function get
+ * get function
  */
-function getModel(){
+exports.getModel = () => { 
     // code
 }
 
 /**
- * function set
+ * set function
  */
-function setModel(){
-
-}
-
-// exports
-module.exports = {
-    getModel: getModel,
-    setModel: setModel
+exports.setModel = () => { 
+    // code
 }

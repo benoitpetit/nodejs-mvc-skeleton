@@ -1,23 +1,38 @@
 #!/usr/bin/env node
-const app = require('../app');
-const debug = require('debug')('myapp:www');
-const http = require('http');
-const colors = require('colors');
 
+/**
+ * Module dependencies.
+ */
 
-// Get the port of the environment and store it in Express
+var app = require('../app');
+var debug = require('debug')('myapp:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-// create express server
+/**
+ * Create HTTP server.
+ */
+
 var server = http.createServer(app);
 
-// Listening on the provided port, on all network interfaces
-server.listen(port);
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port)
 server.on('error', onError);
 server.on('listening', onListening);
 
-// Normalize a port to a number, a string or a false one
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -34,7 +49,10 @@ function normalizePort(val) {
   return false;
 }
 
-// Event listener for HTTP server "error" event
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -44,8 +62,8 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-// Manage specific listening errors with the help of messages
-    switch (error.code) {
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
@@ -59,9 +77,12 @@ function onError(error) {
   }
 }
 
-// Event listener for HTTP server "listen" event
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
 function onListening() {
-  console.log(`listening on ${port} http://localhost:${port}/`.black.bgCyan);
+  console.log(`listening on ${port} http://localhost:${port}/`);
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
