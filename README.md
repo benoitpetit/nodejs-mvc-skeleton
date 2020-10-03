@@ -6,7 +6,7 @@ Base structure project Express
 
 Clone the project
 ```
-git clone https://github.com/benoitpetit/node-mvc-skeleton
+git clone https://github.com/benoitpetit/NodeJS-MVC-Skeleton.git
 ```
 Install dependencies
 ```
